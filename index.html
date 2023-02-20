@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./bootstrap-5.2.2-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./signup.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class=" contain mx-auto mt-4 col-6">
+                <h4 class="text-center mb-4 mt-3">Sign up Page</h4>
+                <input type="text" class="form-control mx-auto mt-4 mb-4" placeholder="firstname" id="first">
+                <input type="text" class="form-control mx-auto mt-3 mb-4" placeholder="lastname" id="last">
+                <input  type="text"  class="form-control mx-auto mt-3 mb-4" placeholder="email"  id="email">
+                <input type="password" class="form-control mx-auto mt-3 mb-4" placeholder="password" id="pass">
+                <button onclick="signUpPage()" class="form-control mx-auto mt-3 mb-5 bg-info  text-light ">click</button>
+                
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        var allUser = []
+        if (localStorage.localAlluser) {
+            allUser = JSON.parse(localStorage.getItem("localAlluser"))
+        }
+        function signUpPage() {
+            var userdetails = {
+                firstname: first.value,
+                lastname: last.value,
+                email: email.value,
+                password: pass.value,
+                alldetails: []
+            }
+            if(first.value=="" || last.value=="" || email.value=="" || pass.value==""){
+                alert("can not be empty")
+            }else{
+
+                allUser.push(userdetails)
+                localStorage.setItem("localAlluser",
+                JSON.stringify(allUser))
+                console.log(allUser)
+                window.location.href = "signin.html"
+            } 
+        }
+
+    </script>
+</body>
+
+</html>
