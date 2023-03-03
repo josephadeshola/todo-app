@@ -1,0 +1,26 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+/* body{
+    background-image: url(	https://www.w3schools.com/css/img_lights.jpg
+    );
+    background-repeat: no-repeat;
+     background-size: cover;
+} */
+.contain{
+    border-radius: 5px;
+    box-shadow: 0 0 9px;
+    border: 1px solid rgb(97, 95, 95);
+    width: 20pc;
+}
+input{
+    border-radius: 10pc !important;
+    box-shadow:  0 0 8px  rgb(97, 95, 95);
+    width: 17pc !important;
+}
+button{
+    box-shadow: 0 0 3px;
+    width: 10pc !important;
+}

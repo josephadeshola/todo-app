@@ -1,0 +1,19 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-image: url(./background\ images1.jpeg);
+    /* background-repeat: no-repeat; */
+    /* background-size: cover; */
+}
+.contain{
+    box-shadow: 0 0 10px !important;
+    border-radius: 5px;
+}
+input{
+    box-shadow: 0 0 8px;
+}
+
+

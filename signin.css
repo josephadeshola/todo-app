@@ -1,0 +1,44 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+/* body{
+    background-image: url(./background\ img.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+} */
+.contain{
+    border: 1px solid rgb(82, 79, 79);
+    box-shadow: 0 0 10px;
+    width: 20pc;
+    height: 20pc;
+    transition: all 3s;
+
+}
+.contain:hover{
+    transform: scale(1.1);
+}
+input{
+  
+    border-radius: 10pc !important;
+    box-shadow: 0 0 5px;
+    margin-top: 3pc;
+    width: 15pc !important;
+}
+input:hover{
+    background-color: rgb(236, 232, 232);
+}
+button{
+    
+    font-weight: 600 !important;
+    box-shadow: 0 0 2px;
+    width: 8pc !important;
+    
+}
+button:hover{
+    background-color: rgb(109, 195, 245) !important;
+}
+.text-center{
+    text-shadow: 2px 2px navy;
+}

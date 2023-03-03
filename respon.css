@@ -1,0 +1,7 @@
+@media (max-width:700px)and(min-width:807) {
+    .table th {
+        font-size: 10px !important;
+        width: 10pc !important;
+    }
+    
+}

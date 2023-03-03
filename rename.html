@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        
+        
+        <input type="text" placeholder="firstname" id="first">
+        <input type="text" placeholder="lastname" id="last">
+        <input type="text" placeholder="email" id="email">
+        <input type="text" placeholder="password" id="pass">
+        <button onclick="signUp()">click</button>
+
+        <h1>Add your todo here</h1>
+        <input type="text" placeholder="tototittle" id="tototittle">
+        <input type="text" placeholder="ttodocategory" id="category">
+        <input type="text" placeholder="todotime" id="time">
+        <button onclick="signTodo()">click</button>
+        <script>
+              
+            var  allUser=[]
+            function signUp(){
+              var allDetails={
+                firstname:first.value,
+                lastname:last.value,
+                email:email.value,
+                password:pass.value,
+                allTodo:[]
+              }                     
+              allUser.push(allDetails)
+              console.log(allUser)   
+
+            }
+            var alltodo=[]
+            function signTodo(){
+                var eachTodo={
+                    tototittle:tototittle.value, 
+                    ttodocategory:category.value,
+                    todotime:time.value,
+                    // useremail:"josephay125d@gmail.com"
+                
+                }
+               allUser[0].allTodo.push(eachTodo)
+                // alltodo.push(eachTodo)
+                // console.log(alltodo)
+                console.log(allUser)
+            }
+            
+        </script>
+    </body>
+</html>

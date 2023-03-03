@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./signin.css">
+    <link rel="stylesheet" href="./bootstrap-5.2.2-dist/css/bootstrap.css">
+</head>
+<body>
+     <div class="container">
+        <div class="roe">
+            <div class="contain mx-auto mt-4">
+                <h5 class="text-center mt-3">Sign in Page</h5>
+                <input class="form-control mx-auto mt-4 mb-4" type="text" placeholder="email" id="em">
+                <input class="form-control mx-auto mt-4 mb-4 " type="text" placeholder="password" id="ep">
+                <button class="form-control bg-primary text-light mx-auto mt-3 mb-3" onclick="signInPage()">sign in</button>
+
+            </div>
+        </div>
+     </div>
+
+    <script>
+        var allUser=JSON.parse(localStorage.getItem ("localAlluser"))
+        function signInPage(){
+            var useremail=em.value
+            var userpassword=ep.value
+            var found=false
+            for (var index = 0; index < allUser.length; index++) {
+                if(allUser[index].email==useremail && allUser[index].password==userpassword){
+                    localStorage.setItem("currentUserIndex",index)
+                    found=true
+                     break;
+                }
+            } 
+            if(em.value=="" || ep.value==""){
+                alert("enter your details")
+            }
+            // let found=allUsers.find((user)=>user.email==useremail &&user.password==userpassword )
+            // localStorage.setItem("currentUserIndex")
+              else if(found==true){
+                window.location.href="dashboard.html"    
+            }
+              else{
+                alert("wroung password")
+            }
+         }
+    </script>
+</body>
+</html>

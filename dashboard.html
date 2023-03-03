@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./bootstrap-5.2.2-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./dashboard.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="mt-4 border border-2  contain shadow-sm  mb-3 col-lg-6 col-md-8 mx-auto">
+                <h4 class="text-center mb-3">My Todo Application</h4>
+                <div id="disp" style="font-size: large; color: blue;"></div>
+                <div class="text-center text-danger" id="disps"></div>
+                <input type="text" class="form-control mt-2 mb-2" placeholder="Toto tittle" id="tittle">
+                <input type="text" class="form-control mt-2 mb-2" placeholder="Todo category" id="category">
+                <input type="time" class="form-control mt-2 mb-2" placeholder="Todo time" id="time">
+                <div class="d-flex gap-4">
+                    <button class="form-control mt-2 btn mb-4 bg-primary" onclick="addTodo()">Add todo</button>
+                    <button class="form-control mt-2 mb-4 bg-danger" onclick="deleteAllTodo()">Delete All todo</button>
+                </div>
+            </div>
+
+            <!-- <modal!--  --> 
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Todo</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="text" class="w-70 my-2 form-control layou-3 " placeholder="todotittle"
+                                id="firstodo">
+                            <input type="text" class="w-70 my-2 form-control" placeholder="todocategory"
+                                id="secondtodo">
+                            <input type="time" class="w-70 my2 form-control" placeholder="todotime" id="thirdtodo">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="change" data-bs-dismiss="modal">save
+                                change</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="class">
+                <table class=" mx-auto table table-striped text-center " id="myTable">
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        const allUser = JSON.parse(localStorage.getItem
+            ("localAlluser"));
+        const currentUserIndex = localStorage.getItem
+            ("currentUserIndex");
+            disp.innerHTML="welcome "+ allUser[ currentUserIndex].firstname
+
+        displayUser()
+
+
+
+        const addTodo = () => {
+            const alltittle = {
+                todotittle: tittle.value,
+                todocategory: category.value,
+                todotime: time.value,
+
+
+            }
+
+            allUser[currentUserIndex].alldetails.push(alltittle)
+            // console.log(allUser)
+            
+            if (tittle.value == "" || category.value == "" || time.value == "") {
+                setTimeout(() => {
+                    disps.innerHTML = "can not be empty"
+                    setTimeout(() => {
+                        disps.innerHTML = ""
+                    }, 2000)
+                    console.log(alltittle)
+                }, 2000);
+                
+            }
+            else {
+                tittle.value = ""
+                category.value = ""
+                time.value = ""
+                displayUser()
+            }
+        }
+        function deleteAllTodo(userIndex) {
+            allUser[currentUserIndex].alldetails.splice(userIndex)
+            localStorage.setItem("localAlluser", JSON.stringify(allUser))
+            displayUser()
+
+        }
+
+        function displayUser() {
+
+            myTable.innerHTML = ''
+            myTable.innerHTML = `
+            <tr class="col-lg-12  bg-dark ">
+             <th  class="text-light shor">S/N</th>
+             <th  class="text-light shor">Todo Tittle</th>
+             <th  class="text-light shor">Todo Category</th>
+             <th  class="text-light shor">Todo Time</th>
+             <th  class="text-light shor">Action</th>   
+            </tr>
+            `
+            currentUserTodo = allUser[currentUserIndex].alldetails
+            for (let index = 0; index < currentUserTodo.length; index++) {
+                myTable.innerHTML += `
+               <tr>
+             <td class="mb-3">${index + 1}</td>
+             <td class="mb-5 "> ${currentUserTodo[index].todotittle}</td>
+             <td class="mb-5 "> ${currentUserTodo[index].todocategory}</td>
+             <td class="mb-5 "> ${currentUserTodo[index].todotime}
+                <td id="desig" >
+                <button  class=" btn btn-danger"  onclick="deleteTodo(${index})">Delete todo</button>
+                <button  class="btn btn-warning " data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="edittodo(${index})">Edit Todo</button>
+                </td>
+
+              </tr>
+              `
+            }
+        }
+
+        function deleteTodo(del) {
+            
+            allUser[currentUserIndex].alldetails.splice(del, 1)
+            localStorage.setItem('localAlluser', JSON.stringify(allUser))
+            displayUser()
+        }
+
+        function edittodo(index) {
+            change.addEventListener("click", () => {
+                editTodo(index)
+            })
+
+        }
+
+
+        function editTodo(index) {
+            const allTittle = {
+                todotittle: firstodo.value,
+                todocategory: secondtodo.value,
+                todotime: thirdtodo.value
+
+            }
+
+            allUser[currentUserIndex].alldetails.splice(index, 1, allTittle)
+            localStorage.setItem('localAlluser', JSON.stringify(allUser))
+            displayUser()
+
+        
+        }
+
+    //     if (localStorage.localAlluser) {
+    //         const allUsers = JSON.parse(localStorage.getItem
+    //             ("localAlluser"));
+    //         let allUser = allUsers[currentUserIndex].alldetails
+    //             for (let index = 0; index < allUser.length; index++) {
+    //                 console.log(allUser[index].alldetails)
+    //                 myTable.innerHTML += `
+    //             <tr>
+    //             <td class="mb-3">${index + 1}</td>
+    //             <td class="mb-5 "> ${allUser[index].todotittle}</td>
+    //             <td class="mb-5 "> ${allUser[index].todocategory}</td>
+    //             <td class="mb-5 "> ${allUser[index].todotime}
+    //                 <td id="desig" >
+    //                 <button  class=" btn btn-danger"  onclick="deleteTodo(${index})">Delete todo</button>
+    //                 <button  class="btn btn-warning " onclick="editTodo(${index})">Edit Todo</button>
+    //                 </td>
+
+    //             </tr>
+    //             `
+    //             }
+    // }
+
+
+
+
+
+    </script>
+    <script src="./bootstrap-5.2.2-dist/js/bootstrap.js"></script>
+</body>
+
+</html>
