@@ -8,6 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="./bootstrap-5.2.2-dist/css/bootstrap.css">
     <link rel="stylesheet" href="./signup.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body>
@@ -41,9 +42,9 @@
                 alldetails: []
             }
             if(first.value=="" || last.value=="" || email.value=="" || pass.value==""){
-                alert("can not be empty")
+            swal("enter a valid details", "", "error");
             }else{
-
+                swal("signup successful!!", "", "success");
                 allUser.push(userdetails)
                 localStorage.setItem("localAlluser",
                 JSON.stringify(allUser))

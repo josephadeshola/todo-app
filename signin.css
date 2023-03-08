@@ -13,11 +13,11 @@
     box-shadow: 0 0 10px;
     width: 20pc;
     height: 20pc;
-    transition: all 3s;
+    transition: all 2s;
 
 }
 .contain:hover{
-    transform: scale(1.1);
+    transform: scale(1.01);
 }
 input{
   
